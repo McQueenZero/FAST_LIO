@@ -4,7 +4,6 @@ project(fast_lio)
 SET(CMAKE_BUILD_TYPE "Debug")
 
 ADD_COMPILE_OPTIONS(-std=c++14 )
-ADD_COMPILE_OPTIONS(-std=c++14 )
 set( CMAKE_CXX_FLAGS "-std=c++14 -O3" )
 
 add_definitions(-DROOT_DIR=\"${CMAKE_CURRENT_SOURCE_DIR}/\")
@@ -46,6 +45,7 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   nav_msgs
   sensor_msgs
+  genmsg
   roscpp
   rospy
   std_msgs
@@ -85,5 +85,6 @@ catkin_package(
 )
 
 add_executable(fastlio_mapping src/laserMapping.cpp include/ikd-Tree/ikd_Tree.cpp src/preprocess.cpp)
+add_dependencies(fastlio_mapping fast_lio_generate_messages_cpp livox_ros_driver_generate_messages_cpp livox_ros_driver2_generate_messages_cpp)
 target_link_libraries(fastlio_mapping ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${PYTHON_LIBRARIES})
 target_include_directories(fastlio_mapping PRIVATE ${PYTHON_INCLUDE_DIRS})

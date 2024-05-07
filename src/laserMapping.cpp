@@ -916,7 +916,7 @@ int main(int argc, char** argv)
             int featsFromMapNum = ikdtree.validnum();
             kdtree_size_st = ikdtree.size();
             
-            // cout<<"[ mapping ]: In num: "<<feats_undistort->points.size()<<" downsamp "<<feats_down_size<<" Map num: "<<featsFromMapNum<<"effect num:"<<effct_feat_num<<endl;
+            cout<<"[ mapping ]: In num: "<<feats_undistort->points.size()<<" downsamp: "<<feats_down_size<<" Map num: "<<featsFromMapNum<<" effect num: "<<effct_feat_num<<endl;
 
             /*** ICP and iterated Kalman filter update ***/
             if (feats_down_size < 5)
@@ -932,7 +932,7 @@ int main(int argc, char** argv)
             fout_pre<<setw(20)<<Measures.lidar_beg_time - first_lidar_time<<" "<<euler_cur.transpose()<<" "<< state_point.pos.transpose()<<" "<<ext_euler.transpose() << " "<<state_point.offset_T_L_I.transpose()<< " " << state_point.vel.transpose() \
             <<" "<<state_point.bg.transpose()<<" "<<state_point.ba.transpose()<<" "<<state_point.grav<< endl;
 
-            if(0) // If you need to see map point, change to "if(1)"
+            if(1) // If you need to see map point, change to "if(1)"
             {
                 PointVector ().swap(ikdtree.PCL_Storage);
                 ikdtree.flatten(ikdtree.Root_Node, ikdtree.PCL_Storage, NOT_RECORD);
@@ -973,8 +973,8 @@ int main(int argc, char** argv)
             if (path_en)                         publish_path(pubPath);
             if (scan_pub_en || pcd_save_en)      publish_frame_world(pubLaserCloudFull);
             if (scan_pub_en && scan_body_pub_en) publish_frame_body(pubLaserCloudFull_body);
-            // publish_effect_world(pubLaserCloudEffect);
-            // publish_map(pubLaserCloudMap);
+            publish_effect_world(pubLaserCloudEffect);
+            publish_map(pubLaserCloudMap);
 
             /*** Debug variables ***/
             if (runtime_pos_log)
