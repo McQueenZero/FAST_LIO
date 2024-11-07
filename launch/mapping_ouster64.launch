@@ -18,4 +18,11 @@
     <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find fast_lio)/rviz_cfg/loam_livox.rviz" />
     </group>
 
+    <!-- NTU Viral -->
+    <param name="GNSS_topic" type="string" value= "/dji_sdk/gps_position" />
+    <node pkg="data_process" type="gnss2world_node" name="gnss2world_node" required="true" />
+    <!-- Fusion Portable -->
+<!--    <param name="GNSS_topic" type="string" value= "/3dm_ins/gnss_left/fix" />-->
+<!--    <node pkg="data_process" type="gnss2world_node" name="gnss2world_node" required="true" />-->
+
 </launch>
